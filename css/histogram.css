@@ -1,0 +1,65 @@
+.svg-histogram-bar {
+  fill: #63B6E2;
+  opacity: 0.50;
+}
+.svg-histogram-bar :hover {
+  opacity: 0.90;
+}
+.svg-histogram-board {
+  stroke: #000;
+  stroke-width: 1;
+  fill: #fff;
+}
+.svg-histogram-line-x {
+  stroke: #000;
+  stroke-width: 1.5;
+}
+.svg-histogram-line-y {
+  stroke: #000;
+  stroke-width: 1.5;
+}
+.svg-histogram-title {
+  font-size: 11px;
+}
+.svg-histogram-label-x {
+  text-anchor: end;
+  alignment-baseline: middle;
+  font-family: "Courier New", Courier, monospace !important;
+  /*font-weight: bold;*/
+  font-size: 10px;
+}
+.svg-histogram-label-y {
+  text-anchor: end;
+  alignment-baseline: middle;
+  font-family: "Courier New", Courier, monospace !important;
+  /*font-weight: bold;*/
+  font-size: 10px;
+}
+.svg-histogram-label-line-x {
+  stroke: #000;
+  stroke-width: 1;
+}
+.svg-histogram-label-line-y {
+  stroke: #000;
+  stroke-width: 1;
+}
+.svg-histogram-label-vertical-line {
+  stroke: #000;
+  stroke-width: 0.1;
+}
+.svg-histogram-label-horizontal-line {
+  stroke: #000;
+  stroke-width: 0.1;
+}
+.svg-histogram-median {
+  fill: #070091;
+  opacity: 0.60;
+}
+.svg-histogram-out-left {
+  fill: #F9964F;
+  opacity: 0.30;
+}
+.svg-histogram-out-right {
+  fill: #F9964F;
+  opacity: 0.30;
+}

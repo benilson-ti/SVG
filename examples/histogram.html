@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Histogram</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/histogram.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../js/Svg.js"></script>
+        <script type="text/javascript" src="../js/Histogram.js"></script>
+    </head>
+    <body>
+        <div id="testeHistogram" style="max-width: 50%; margin-top: 10%;"></div>
+        <script type="text/javascript">
+            var jsonTeste =
+            {
+              "elements": [
+                {
+                  "type": "bar_filled",
+                  "colour": "#F9964F",
+                  "outline-colour": "#F9964F",
+                  "values": [
+                    {
+                      "top": 1,
+                      "tip": "0,00<br>1",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 0,
+                      "tip": "<br>0",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 2,
+                      "tip": "0,70 a 1,02<br>2",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 1,
+                      "tip": "1,40<br>1",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 8,
+                      "tip": "1,51 a 1,80<br>8",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 2,
+                      "tip": "1,81 a 2,10<br>2",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 1,
+                      "tip": "2,48<br>1",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 0,
+                      "tip": "<br>0",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 1,
+                      "tip": "3,00<br>1",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 0,
+                      "tip": "<br>0",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 0,
+                      "tip": "<br>0",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 0,
+                      "tip": "<br>0",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 0,
+                      "tip": "<br>0",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 0,
+                      "tip": "<br>0",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 0,
+                      "tip": "<br>0",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 0,
+                      "tip": "<br>0",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 0,
+                      "tip": "<br>0",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    },
+                    {
+                      "top": 1,
+                      "tip": "6,60<br>1",
+                      "colour": "#63B6E2",
+                      "outline-colour": "#0093E2"
+                    }
+                  ]
+                },
+                {
+                  "type": "shape",
+                  "colour": "#070091",
+                  "values": [
+                    {
+                      "x": 4.2888888888889,
+                      "y": 0
+                    },
+                    {
+                      "x": 4.2888888888889,
+                      "y": 8
+                    },
+                    {
+                      "x": 4.1888888888889,
+                      "y": 8
+                    },
+                    {
+                      "x": 4.1888888888889,
+                      "y": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "shape",
+                  "colour": "#F9964F",
+                  "values": [
+                    {
+                      "x": -0.5,
+                      "y": 0
+                    },
+                    {
+                      "x": -0.5,
+                      "y": 8
+                    },
+                    {
+                      "x": 3.2111111111111,
+                      "y": 8
+                    },
+                    {
+                      "x": 3.2111111111111,
+                      "y": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "shape",
+                  "colour": "#F9964F",
+                  "values": [
+                    {
+                      "x": 5.3444444444444,
+                      "y": 0
+                    },
+                    {
+                      "x": 5.3444444444444,
+                      "y": 8
+                    },
+                    {
+                      "x": 17.5,
+                      "y": 8
+                    },
+                    {
+                      "x": 17.5,
+                      "y": 0
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "text": "Jan\/2018 - Magn\u00e9sio - BQ01 - Labtest - Magon\/ Azul de Xilidil # Cobas Mira\/ S\/ Plus\/ Plus CC",
+                "style": "{font-family: Tahoma; font-size: 11px; color: #000000;}"
+              },
+              "bg_colour": "#FFFFFF",
+              "x_axis": {
+                "colour": "#000000",
+                "grid-colour": "#dddddd",
+                "stroke": 2,
+                "labels": {
+                  "rotate": 270,
+                  "colour": "#000000",
+                  "size": 10,
+                  "labels": [
+                    {
+                      "text": "-0,04 a 0,32",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "0,33 a 0,69",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "0,70 a 1,06",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "1,07 a 1,43",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "1,44 a 1,80",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "1,81 a 2,17",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "2,18 a 2,54",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "2,55 a 2,91",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "2,92 a 3,28",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "3,29 a 3,65",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "3,66 a 4,02",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "4,03 a 4,39",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "4,40 a 4,76",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "4,77 a 5,13",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "5,14 a 5,50",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "5,51 a 5,87",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "5,88 a 6,24",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    },
+                    {
+                      "text": "6,25 a 6,61",
+                      "colour": "#000000",
+                      "size": 10,
+                      "rotate": 270
+                    }
+                  ]
+                },
+                "tick-height": 5,
+                "min": 0,
+                "max": 17
+              },
+              "y_axis": {
+                "colour": "#000000",
+                "grid-colour": "#dddddd",
+                "stroke": 2,
+                "min": 0,
+                "max": 8,
+                "steps": 1,
+                "labels": {
+                  "labels": [
+                    {
+                      "y": 1,
+                      "text": 1
+                    },
+                    {
+                      "y": 0,
+                      "text": 0
+                    },
+                    {
+                      "y": 2,
+                      "text": 2
+                    },
+                    {
+                      "y": 1,
+                      "text": 1
+                    },
+                    {
+                      "y": 8,
+                      "text": 8
+                    },
+                    {
+                      "y": 2,
+                      "text": 2
+                    },
+                    {
+                      "y": 1,
+                      "text": 1
+                    },
+                    {
+                      "y": 0,
+                      "text": 0
+                    },
+                    {
+                      "y": 1,
+                      "text": 1
+                    },
+                    {
+                      "y": 0,
+                      "text": 0
+                    },
+                    {
+                      "y": 0,
+                      "text": 0
+                    },
+                    {
+                      "y": 0,
+                      "text": 0
+                    },
+                    {
+                      "y": 0,
+                      "text": 0
+                    },
+                    {
+                      "y": 0,
+                      "text": 0
+                    },
+                    {
+                      "y": 0,
+                      "text": 0
+                    },
+                    {
+                      "y": 0,
+                      "text": 0
+                    },
+                    {
+                      "y": 0,
+                      "text": 0
+                    },
+                    {
+                      "y": 1,
+                      "text": 1
+                    }
+                  ]
+                }
+              },
+              "x_legend": {
+                "text": "Resultados",
+                "style": "{font-family: Tahoma; font-size: 12px; color: #000000}"
+              },
+              "y_legend": {
+                "text": "Frequ\u00eancia",
+                "style": "{font-family: Tahoma; font-size: 12px; color: #000000}"
+              },
+              "tooltip": {
+                "shadow": true,
+                "stroke": 2,
+                "colour": "#6E604F",
+                "background": "#f0f0f0",
+                "title": "{font-family: Tahoma; font-size: 11px; font-weight: bold; color: #0000f0;}",
+                "body": "{font-family: Tahoma; font-size: 10px; color: #000000;}"
+              },
+              "mediana": "1.7",
+              "faixaAvaValorInf": "1.26",
+              "faixaAvaValorSup": "2.12"
+            };
+
+            jsonTeste.tooltips = [];
+
+            $(jsonTeste.elements[0].values).each(function(i) {
+                jsonTeste.tip = this.tip.split('<br>');
+                jsonTeste.tooltips.push({
+                    title: jsonTeste.tip[0],
+                    content: jsonTeste.tip[1]
+                });
+            });
+
+            new Histogram({
+                width: 1000,
+                height: 500,
+                title: jsonTeste.title.text,
+                titleX: jsonTeste.x_legend.text,
+                titleY: jsonTeste.y_legend.text,
+                labelsX: jsonTeste.x_axis.labels.labels,
+                labelsY: jsonTeste.y_axis.labels.labels,
+                heightY: jsonTeste.y_axis.max,
+                median: jsonTeste.mediana,
+                outLeft: jsonTeste.faixaAvaValorInf,
+                outRight: jsonTeste.faixaAvaValorSup,
+                tooltips: jsonTeste.tooltips,
+                responsive: true
+            }).draw('#testeHistogram');
+        </script>
+    </body>
+</html>

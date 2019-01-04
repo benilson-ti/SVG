@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Deviation Index</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/deviation_index.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../js/Svg.js"></script>
+        <script type="text/javascript" src="../js/DeviationIndex.js"></script>
+    </head>
+    <body>
+        <div id="example" style="max-width: 50%; float: left;"></div>
+        <div id="example2" style="max-width: 50%; float: left; padding-left: 30px;"></div>
+        <script type="text/javascript">
+            var params = {
+                width: 380,
+                height: 240,
+                titleY: 'Índice de Desvio',
+                responsive: false,
+                withStandardDeviationBars: true,
+                labelsX: [
+                    {
+                        "text": "Dez/2017",
+                        "itens": [
+                            {
+                                value: 3,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "8",
+                                    'title': "Item"
+                                }
+                            },
+                            {
+                                value: 1,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "1",
+                                    'title': "Item"
+                                }
+                            },
+                            {
+                                value: -2,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "-2",
+                                    'title': "Item"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "text": "Mar/2018",
+                        "itens": [
+                            {
+                                value: 1,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "1",
+                                    'title': "Item"
+                                }
+                            },
+                            {value: null},
+                            {
+                                value: 10.5,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "1.5",
+                                    'title': "Item"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "text": "Jun/2018",
+                        "itens": [
+                            {
+                                value: 2,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "2",
+                                    'title': "Item"
+                                }
+                            },
+                            {
+                                value: -2,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "-2",
+                                    'title': "Item"
+                                }
+                            },
+                            {
+                                value: 0,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "0",
+                                    'title': "Item"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "text": "Dez/2018",
+                        "itens": [
+                            {
+                                value: 4,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "4",
+                                    'title': "Item"
+                                }
+                            },
+                            {
+                                value: 2.5,
+                                popover: { // usando os parâmetros default de DeviationIndex.popoverDefault
+                                    'data-content': "2.5",
+                                    'title': "Item"
+                                }
+                            },
+                            {value: null}
+                        ]
+                    }
+                ],
+                labelsY: [-4, -3, -2, -1, 0, 1, 2, 3, 4]
+            };
+
+            new DeviationIndex(params).draw('#example');
+        </script>
+
+        <script type="text/javascript">
+            var paramsZ = {
+                width: 750,
+                height: 500,
+                titleY: 'Índice Z',
+                labelsY: params.labelsY,
+                responsive: true,
+                withStandardDeviationBars: false,
+                labelsX: [
+                    {
+                        "text": "Out/2017",
+                        "indiceZ": {
+                            value: 4,
+                            popover: {
+                                'data-toggle': "popover",
+                                'data-trigger': "hover",
+                                'data-container': "body",
+                                'data-html': "true",
+                                'data-placement': "auto right",
+                                'title': "Índice Z",
+                                'data-content': [
+                                    "<div><strong>Valor: </strong>3.83</div>",
+                                    "<div><strong>DP: </strong>4</div>",
+                                    "<div><strong>Percentual: </strong>100</div>"
+                                ].join('')
+                            }
+                        },
+                        "itens": [
+                            {
+                                value: 4,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "4",
+                                    'title': "Item"
+                                }
+                            },
+                            {
+                                value: -0.3,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "-0.3",
+                                    'title': "Item"
+                                }
+                            },
+                            {
+                                value: -0.9,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "-0.9",
+                                    'title': "Item"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "text": "Nov/2017",
+                        "itens": [
+                            {
+                                value: 4.1,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "4.1",
+                                    'title': "Item"
+                                }
+                            },
+                            {
+                                value: -3.5,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "-3.5",
+                                    'title': "Item"
+                                }
+                            },
+                            {
+                                value: -4.0,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "-4.0",
+                                    'title': "Item"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "text": "Dez/2017",
+                        "indiceZ": {
+                            value: 3,
+                            popover: {
+                                'data-toggle': "popover",
+                                'data-trigger': "hover",
+                                'data-container': "body",
+                                'data-html': "true",
+                                'data-placement': "auto right",
+                                'title': "Índice Z",
+                                'data-content': [
+                                    "<div><strong>Valor: </strong>2.58</div>",
+                                    "<div><strong>DP: </strong>3</div>",
+                                    "<div><strong>Percentual: </strong>99</div>"
+                                ].join('')
+                            }
+
+                        },
+                        "itens": [
+                            null,
+                            {
+                                value: 3,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "3",
+                                    'title': "Item"
+                                }
+                            },
+                            null
+                        ]
+                    },
+                    {
+                        "text": "Jan/2018",
+                        "indiceZ": {
+                            value: 1.5,
+                            popover: {
+                                'data-toggle': "popover",
+                                'data-trigger': "hover",
+                                'data-container': "body",
+                                'data-html': "true",
+                                'data-placement': "auto right",
+                                'title': "Índice Z",
+                                'data-content': [
+                                    "<div><strong>Valor: </strong>1.65</div>",
+                                    "<div><strong>DP: </strong>1.5</div>",
+                                    "<div><strong>Percentual: </strong>90</div>"
+                                ].join('')
+                            }
+
+                        },
+                        "itens": [
+                            {
+                                value: 2,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "2",
+                                    'title': "Item"
+                                }
+                            },
+                            null,
+                            null
+                        ]
+                    },
+                    {
+                        "text": "Fev/2018",
+                        "indiceZ": {
+                            value: 2,
+                            popover: {
+                                'data-toggle': "popover",
+                                'data-trigger': "hover",
+                                'data-container': "body",
+                                'data-html': "true",
+                                'data-placement': "auto right",
+                                'title': "Índice Z",
+                                'data-content': [
+                                    "<div><strong>Valor: </strong>2.88</div>",
+                                    "<div><strong>DP: </strong>2</div>",
+                                    "<div><strong>Percentual: </strong>95</div>"
+                                ].join('')
+                            }
+                        },
+                        "itens": [
+                            null,
+                            null,
+                            null
+                        ]
+                    },
+                    {
+                        "text": "Mar/2018",
+                        "itens": [
+                            {
+                                value: 44.8,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "44.8",
+                                    'title': "Item"
+                                }
+                            },
+                            {
+                                value: -3.8,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "-3.8",
+                                    'title': "Item"
+                                }
+                            },
+                            {
+                                value: -80.5,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "-80.5",
+                                    'title': "Item"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "text": "Abr/2018",
+                        "indiceZ": {
+                            value: 1.5,
+                            popover: {
+                                'data-toggle': "popover",
+                                'data-trigger': "hover",
+                                'data-container': "body",
+                                'data-html': "true",
+                                'data-placement': "auto right",
+                                'title': "Índice Z",
+                                'data-content': [
+                                    "<div><strong>Valor: </strong>1.65</div>",
+                                    "<div><strong>DP: </strong>1.5</div>",
+                                    "<div><strong>Percentual: </strong>90</div>"
+                                ].join('')
+                            }
+                        },
+                        "itens": [
+                            {
+                                value: 0.2,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "0.2",
+                                    'title': "Item"
+                                }
+                            },
+                            {
+                                value: -0.3,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "-0.3",
+                                    'title': "Item"
+                                }
+                            },
+                            {
+                                value: -0.9,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "-0.9",
+                                    'title': "Item"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "text": "Jun/2018",
+                        "itens": [
+                            null,
+                            null,
+                            {
+                                value: 1,
+                                popover: {
+                                    'data-toggle': "popover",
+                                    'data-trigger': "hover",
+                                    'data-container': "body",
+                                    'data-html': "true",
+                                    'data-placement': "auto top",
+                                    'data-content': "1",
+                                    'title': "Item"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            };
+
+            new DeviationIndex(paramsZ).draw('#example2');
+        </script>
+    </body>
+</html>

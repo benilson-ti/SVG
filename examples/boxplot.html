@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Boxplot</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/boxplot.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="../js/Svg.js"></script>
+        <script type="text/javascript" src="../js/BoxPlot.js"></script>
+    </head>
+    <body>
+        <div id="testeBoxSplot" style="max-width: 50%;"></div>
+        <script type="text/javascript">
+            var grupos = [
+                {
+                    downLimit: 0,
+                    upLimit: 11000,
+                    downQuartile: 2000,
+                    upQuartile: 5500,
+                    median: 3000,
+                    numGroup: 1,
+                    point: 5000
+                },
+            //    {
+            //        noGroup: true // espaçador
+            //    },
+            //    {
+            //        noGroup: true // espaçador
+            //    },
+            //    {
+            //        downLimit: 11000,
+            //        upLimit: 1500,
+            //        downQuartile: 4800,
+            //        upQuartile: 7500,
+            //        median: 5500,
+            //        numGroup: 2,
+            //        point: 6100
+            //    },
+            //    {
+            //        downLimit: 4000,
+            //        upLimit: 19000,
+            //        downQuartile: 6000,
+            //        upQuartile: 12000,
+            //        median: 9000,
+            //        numGroup: 3,
+            //        noGroup: true
+            //    },
+                {
+                    downLimit: 0,
+                    upLimit: 25000,
+                    downQuartile: 1000,
+                    upQuartile: 23000,
+                    median: 15000,
+                    numGroup: 4
+                },
+                {
+                    downLimit: 3000,
+                    upLimit: 18000,
+                    downQuartile: 7000,
+                    upQuartile: 17000,
+                    median: 13000,
+                    numGroup: 5
+                },
+                {
+                    downLimit: 1543,
+                    upLimit: 16345,
+                    downQuartile: 4563,
+                    upQuartile: 8764,
+                    median: 8124,
+                    numGroup: 6
+                },
+            //    {
+            //        downLimit: 1043,
+            //        upLimit: 15345,
+            //        downQuartile: 3563,
+            //        upQuartile: 7764,
+            //        median: 6124,
+            //        numGroup: 1000
+            //    }
+
+            ];
+
+
+
+            var boxPlot = new BoxPlot({
+                width: 480,
+                height: 320,
+                labelsY: [
+                    0,
+                    5000,
+                    10000,
+                    15000,
+                    20000,
+                    25000
+                ],
+                responsive: true,
+                heightY: 25000,
+                titleY: 'Exames/funcionários da área técnica',
+                groups: grupos,
+                id: 'testeBoxPlot'
+            });
+
+            boxPlot.getSvg().add(new Text('Até 125.000 exames/mês', {
+                x: boxPlot.width * 0.20,
+                y: boxPlot.height * 0.95,
+                fill: '#000',
+                class: 'svg-boxplot-title-x svg-boxplot-title-y'
+            }));
+
+            boxPlot.getSvg().add(new Text('Acima de 125.000 exames/mês', {
+                x: boxPlot.width * 0.55,
+                y: boxPlot.height * 0.95,
+                class: 'svg-boxplot-title-x svg-boxplot-title-y'
+            }));
+
+            boxPlot.draw('#testeBoxSplot');
+        </script>
+    </body>
+</html>
