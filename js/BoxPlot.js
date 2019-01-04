@@ -3,87 +3,87 @@
 'use strict';
 
 /**
- * Classe que controla as funcionalidades de geração de gráficos box plot, usando svg.
+ * Class for boxplot graphic using svg.
  * @requires jquery.js
  * @requires Svg.js
  * @requires boxplot.css
- * @param {Object} Objeto literal de dados do gráfico
+ * @param {Object} Literal Object with graphic informations
  * @returns {BoxPlot}
  */
 function BoxPlot(dados) {
     /**
-     * Ponteiro.
+     * Pointer.
      * @type BoxPlot
      */
     var that = this;
 
     /**
-     * Define a largura do svg.
-     * @type {Number} valor inteiro
+     * Svg width.
+     * @type {Number} Integer value
      */
     this.width = 500;
 
     /**
-     * Define a altura do svg.
-     * @type {Number} valor inteiro
+     * Svg height.
+     * @type {Number} Integer value
      */
     this.height = 300;
 
     /**
-     * Define a altura do eixo y.
-     * @type {Number} valor inteiro
+     * Y-axis height.
+     * @type {Number} Integer value
      */
     this.heightY;
 
     /**
-     * Lista de labels do eixo Y.
-     * @type {Array} Lista de objetos
+     * Labels list y-axis.
+     * @type {Array} Objects list
      */
     this.labelsY;
 
     /**
-     * Título do gráfico no eixo y.
-     * @type {String} Título
+     * Y-axis title.
+     * @type {String} Text title
      */
     this.titleY;
 
     /**
-     * Define se o SVG é para ser responsivo ou não.
+     * Responsive true or false.
      * @var Boolean
      */
     this.responsive = false;
 
     /**
-     * Lista de dados, para formar os grupos no gráfico.
+     * List of data, to form the groups in the graph.
      * @var Array
      */
     this.groups;
 
-    // aplica a configuração informada.
+    // apply the set configuration.
     $.extend(this, dados);
     dados = null;
 
     /**
-     * Svg gerado. @see Svg.js
-     * @type {Svg} Objeto Svg
+     * Svg generated. @see Svg.js
+     * @type {Svg} Object Svg
      */
     this.svg;
 
     /**
-     * Linha do eixo x.
+     * X-axis line.
      * @type {Line}
      */
     this.lineX;
 
     /**
-     * Linha do eixo y.
+     * Y-axis line.
      * @type {Line}
      */
     this.lineY;
 
     /**
-     * Método que define o valor do atributo responsive.
-     * @param {Boolean} value Valor do atributo
+     * Set responsive atribute.
+     * @param {Boolean} value Atribute value
      * @return {BoxPlot}
      */
     this.setResponsive = function(value) {
@@ -92,7 +92,7 @@ function BoxPlot(dados) {
     };
 
     /**
-     * Retorna uma linha, usada para desenhar o eixo x.
+     * Return one line, used for draw x-axis.
      * @returns {Line}
      */
     this.getLineX = function() {
@@ -100,9 +100,9 @@ function BoxPlot(dados) {
             return this.lineX;
         }
 
-        var height = (this.height * 0.90), // posiciona em 90% da altura do svg;
-            x1 = (this.width * 0.15), // 15% do tamanho do svg
-            x2 = (this.width * 0.95), // vai até 95% do tamanho do svg
+        var height = (this.height * 0.90), // put in 90% svg height;
+            x1 = (this.width * 0.15), // 15% svg width
+            x2 = (this.width * 0.95), // ends in 95% svg width
             params = {
                 x1: x1,
                 y1: height,
@@ -116,7 +116,7 @@ function BoxPlot(dados) {
     };
 
     /**
-     * Retorna uma linha, usada para desenhar o eixo y.
+     * Return one line, used for draw y-axis.
      * @returns {Line}
      */
     this.getLineY = function() {
@@ -125,7 +125,7 @@ function BoxPlot(dados) {
         }
 
         var x = this.getLineX().getParam('x1'),
-            y1 = (this.height * 0.10), // 10% da altura do svg
+            y1 = (this.height * 0.10), // 10% svg height
             y2 = this.getLineX().getParam('y1'),
             params = {x1: x, y1: y1, x2: x, y2: y2, class: 'svg-boxplot-line-y'};
 
@@ -134,7 +134,7 @@ function BoxPlot(dados) {
     };
 
     /**
-     * Adiciona o título do eixo y.
+     * Add one title on y-axis.
      * @returns {Text}
      */
     this.addTitleY = function() {
@@ -156,16 +156,16 @@ function BoxPlot(dados) {
     };
 
     /**
-     * Desenha o gráfico no seletor informado.
-     * @param {String} seletor Seletor jQuery
+     * Draw graphic on selector of element.
+     * @param {String} selector jQuery selector
      * @returns {Svg}
      */
-    this.draw = function(seletor) {
-        return this.getSvg().setResponsive(this.responsive).draw(seletor);
+    this.draw = function(selector) {
+        return this.getSvg().setResponsive(this.responsive).draw(selector);
     };
 
     /**
-     * Retorna um elemento svg, com seus componentes e as informações do histograma.
+     * Return one svg element with histogram informations.
      * @returns {Svg}
      */
     this.getSvg = function() {
@@ -189,7 +189,7 @@ function BoxPlot(dados) {
     };
 
     /**
-     * Retorna um quadrado usado na moldura do svg.
+     * Returns a square used in the svg frame.
      * @returns {Rect}
      */
     this.getBoard = function() {
@@ -199,7 +199,7 @@ function BoxPlot(dados) {
     };
 
     /**
-     * Adiciona as labels do eixo y.
+     * Add labels to y-axis.
      * @returns {undefined}
      */
     this.addLabelsEixoY = function() {
@@ -228,24 +228,24 @@ function BoxPlot(dados) {
     };
 
     /**
-     * Adiciona os grupos gráficos ao svg.
+     * Add groups to svg.
      * @returns {undefined}
      */
     this.addGroupsBoxPlot = function()
     {
         /**
-         * Retorna os parâmetros usados na configuração.
-         * @param {Object} params Lista de parâmetros
-         * @param {Number} indice Índice do grupo
+         * Return params to set.
+         * @param {Object} params Params list
+         * @param {Number} index Group index
          * @returns {Object}
          */
-        var getParamsGroups = function(params, indice) {
+        var getParamsGroups = function(params, index) {
             var lineY = that.getLineY(),
                 lineX = that.getLineX(),
                 largura = (lineX.getParam('x2') - lineX.getParam('x1')),
-                // + 2 para adicionar um espaçamento no início e no fim
+                // + 2 to add a space at the beginning and end
                 qtdGrupos = (that.groups.length + 2),
-                numGroup = (indice + 1),
+                numGroup = (index + 1),
                 larguraCadaGrupo = (largura / qtdGrupos),
                 alturaMedia = (
                     (lineY.getParam('y2') - lineY.getParam('y1')) / that.heightY
@@ -281,8 +281,8 @@ function BoxPlot(dados) {
         },
 
         /**
-         * Retorna a linha verticial usada no grupo gráfico.
-         * @param {Object} dados Lista de parâmetros
+         * Return one vertical line used in graph group.
+         * @param {Object} dados Params list
          * @returns {Line}
          */
         getVerticalLineGroup = function(dados) {
@@ -290,8 +290,8 @@ function BoxPlot(dados) {
         },
 
         /**
-         * Retorna a linha superior usada no grupo gráfico.
-         * @param {Object} dados Lista de parâmetros
+         * Return one up line used in graph group.
+         * @param {Object} dados Params list
          * @returns {Line}
          */
         getLimitUpLineGroup = function(dados) {
@@ -307,8 +307,8 @@ function BoxPlot(dados) {
         },
 
         /**
-         * Retorna a linha inferior usada no grupo gráfico.
-         * @param {Object} dados Lista de parâmetros
+         * Return one bottom line used in graph group.
+         * @param {Object} dados Params list
          * @returns {Line}
          */
         getLimitDownLineGroup = function(dados) {
@@ -324,8 +324,8 @@ function BoxPlot(dados) {
         },
 
         /**
-         * Retorna o ponto marcado no grupo gráfico.
-         * @param {Object} dados Lista de parâmetros
+         * Returns the point marked in the graphic group.
+         * @param {Object} dados Params list
          * @returns {Circle}
          */
         getPointGroup = function(dados) {
@@ -338,8 +338,8 @@ function BoxPlot(dados) {
         },
 
         /**
-         * Retorna o retângulo usado no grupo gráfico, possui o primeiro e o terceiro quartil.
-         * @param {Object} dados Lista de parâmetros
+         * Returns the rectangle used in the graphic group, has the first and third quartiles.
+         * @param {Object} dados Params list
          * @returns {Rect}
          */
         getRectGroup = function(dados) {
@@ -355,8 +355,8 @@ function BoxPlot(dados) {
         },
 
         /**
-         * Retorna a linha da média (terceiro quartil), usada no grupo gráfico.
-         * @param {Object} dados Lista de parâmetros
+         * Returns the median line used in the graphic group. Third quartile.
+         * @param {Object} dados Params list
          * @returns {Line}
          */
         getMedianGroup = function(dados) {
@@ -373,7 +373,7 @@ function BoxPlot(dados) {
         };
 
         $(this.groups).each(function(i, params) {
-            if (params.noGroup) { // para modificação do espaçamento
+            if (params.noGroup) { // for spacing modification
                 return; // continue
             }
 

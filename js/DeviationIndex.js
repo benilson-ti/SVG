@@ -3,82 +3,82 @@
 "use strict";
 
 /**
- * Classe que controla as funcionalidades de geração de gráficos de índice de desvio, usando svg.
+ * Class to control the deviation index graphing generation features, using svg.
  * @requires jquery.js
  * @requires Svg.js
  * @requires deviation_index.css
- * @param {Json} dados Json de dados do gráfico
+ * @param {Json} dados Json of graph data
  * @returns {DeviationIndex}
  */
 function DeviationIndex(dados) {
     /**
-     * Ponteiro.
+     * Pointer.
      * @type DeviationIndex
      */
     var that = this;
 
     /**
-     * Define a largura do svg.
-     * @type {Number} valor inteiro
+     * Svg width.
+     * @type {Number} Integer value
      */
     this.width = 600;
 
     /**
-     * Define a altura do svg.
-     * @type {Number} valor inteiro
+     * Svg height.
+     * @type {Number} Integer value
      */
     this.height = 400;
 
     /**
-     * Lista de labels do eixo x.
-     * @type {Array} Lista de objetos
+     * X-axis labels list.
+     * @type {Array} Object list
      */
     this.labelsX;
 
     /**
-     * Lista de labels do eixo Y.
-     * @type {Array} Lista de objetos
+     * Y-axis labels list.
+     * @type {Array} Object list
      */
     this.labelsY;
 
     /**
-     * Título do gráfico no eixo y.
+     * Y-axis text title.
      * @type {String}
      */
     this.titleY;
 
     /**
-     * Se é para adicionar ou não as duas barras de desvio padrão, no meio do gráfico.
-     * @type {Boolean} Default false (não adicionar)
+     * Whether or not to add the two standard deviation bars in the middle of the graph.
+     * @type {Boolean} Default false (not add)
      */
     this.withStandardDeviationBars = false;
 
     /**
-     * Define se o SVG é para ser responsivo ou não.
-     * @type {Boolean} Default false (não responsivo)
+     * Responsive true or false.
+     * @type {Boolean} Default false (not responsive)
      */
     this.responsive = false;
 
     /**
-     * Erro total permitido
-     * @type {Object} Objeto literal com as configurações
+     * Total allowed error.
+     * @type {Object} Literal object with the settings
      */
     this.ETp;
 
     /**
-     * Erro sistemático permitido
-     * @type {Object} Objeto literal com as configurações
+     * Systematic error allowed
+     * @type {Object} Literal object with the settings
      */
     this.ESp;
 
     /**
-     * Parâmetros da linha do eixo X
-     * @type {Object} Objeto literal com as configurações
+     * Params x-axis line.
+     * @type {Object} Literal object with the settings
      */
     this.paramsLineX = {};
 
     /**
-     * Lista de atributos default de uma popover do bootstrap.
+     * Default attributes list bootstrap popover.
      * @var {Object}
      */
     this.popoverDefault = {
@@ -89,13 +89,13 @@ function DeviationIndex(dados) {
         'data-placement': "auto top"
     };
 
-    // aplica a configuração informada.
+    // apply the set configuration.
     $.extend(this, dados);
     dados = null;
 
     /**
-     * Método que define o valor do atributo responsive.
-     * @param {Boolean} value Valor do atributo
+     * Set responsive atribute.
+     * @param {Boolean} value Atribute value
      * @return {DeviationIndex}
      */
     this.setResponsive = function(value) {
@@ -104,48 +104,48 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Svg gerado. @see Svg.js
+     * Svg generated. @see Svg.js
      * @type {Svg} Objeto Svg
      */
     this.svg;
 
     /**
-     * Grupo de elementos svg do eixo x.
+     * Group of elements x-axis.
      * @type {Group}
      */
     this.grupoEixoX;
 
     /**
-     * Grupo de elementos svg do eixo y.
+     * Group of elements y-axis.
      * @type {Group}
      */
     this.grupoEixoY;
 
     /**
-     * Line do eixo x.
+     * X-axis line.
      * @type {Line}
      */
     this.lineX;
 
     /**
-     * Line do eixo y.
+     * Y-axis line.
      * @type {Line}
      */
     this.lineY;
 
     /**
-     * Desenha o gráfico no seletor informado.
-     * @param {String|Object} seletor Seletor jQuery
+     * Draws the graph in the jQuery selector.
+     * @param {String|Object} selector jQuery selector
      * @returns {Svg}
      */
-    this.draw = function(seletor) {
-        var svg = this.getSvg().setResponsive(this.responsive).draw(seletor);
+    this.draw = function(selector) {
+        var svg = this.getSvg().setResponsive(this.responsive).draw(selector);
         $('.svg-popover').popover();
         return svg;
     };
 
     /**
-     * Retorna um quadrado usado na moldura do svg.
+     * Returns a square used in the svg frame.
      * @returns {Rect}
      */
     this.getBoard = function() {
@@ -155,7 +155,7 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Retorna uma linha, usada para desenhar o eixo x.
+     * Return one line, used for draw x-axis.
      * @returns {Line}
      */
     this.getLineX = function() {
@@ -180,7 +180,7 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Retorna a maior quantidade de caracteres, dos elementos das labels, no eixo Y.
+     * Returns the largest number of characters in the Y-axis labels.
      * @returns {Number}
      */
     this.getQtdCharLabelY = function() {
@@ -193,7 +193,7 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Retorna uma linha, usada para desenhar o eixo y.
+     * Return one line, used for draw y-axis.
      * @returns {Line}
      */
     this.getLineY = function() {
@@ -211,7 +211,7 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Retorna um grupo de elementos do eixo x.
+     * Return one group of elements x-axis.
      * @returns {Group}
      */
     this.getGrupoEixoX = function() {
@@ -227,7 +227,7 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Retorna um grupo de elementos do eixo y.
+     * Return one group of elements y-axis.
      * @returns {Group}
      */
     this.getGrupoEixoY = function() {
@@ -241,7 +241,7 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Retorna o título do eixo y.
+     * Return text title of y-axis.
      * @returns {Text}
      */
     this.getTitleY = function() {
@@ -253,7 +253,7 @@ function DeviationIndex(dados) {
                 class: 'svg-deviation-index-title-y'
             };
 
-        // hack para renderizar tag html dentro do título
+        // hack for rendering tag html inside title
         if (/\<sup\>/.test(this.titleY)) {
             params.height = this.height;
             params.width = 20;
@@ -273,28 +273,28 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Adiciona um triângulo indicativo de que o item está fora dos limites.
-     * @param {Number} x Coordenada x
-     * @param {Number} y Coordenada y
-     * @param {Number} lado Tamanho dos lados do triângulo
-     * @param {Number} indice Índice do item
-     * @param {Boolean} transform Se é para rotacionar ou não o triângulo em 180 graus
-     * @param {Object} popover Parâmetros da popover
+     * Adds a triangle that indicates that the item is out of bounds.
+     * @param {Number} x Coordinate x
+     * @param {Number} y Coordinate y
+     * @param {Number} side Size of the sides of the triangle
+     * @param {Number} index Item index
+     * @param {Boolean} transform Whether or not to rotate the triangle by 180 degrees
+     * @param {Object} popover Popover params
      * @returns {undefined}
      */
-    this.addTriangleItemOut = function(x, y, lado, indice, transform, popover) {
+    this.addTriangleItemOut = function(x, y, side, index, transform, popover) {
         var points = [
                 (x + ',' + y),
-                ((x - (lado * 0.5)) + ',' + (y + lado)),
-                ((x + (lado * 0.5)) + ',' + (y + lado))
+                ((x - (side * 0.5)) + ',' + (y + side)),
+                ((x + (side * 0.5)) + ',' + (y + side))
             ],
             params = {
                 points: points.join(' '),
-                class: ('svg-popover svg-deviation-index-item-out svg-deviation-index-item' + (indice + 1))
+                class: ('svg-popover svg-deviation-index-item-out svg-deviation-index-item' + (index + 1))
             };
 
         if (transform) {
-            params['transform'] = 'rotate(180,' + x + ',' + (y + lado / 2) + ')';
+            params['transform'] = 'rotate(180,' + x + ',' + (y + side / 2) + ')';
         }
 
         if (popover) {
@@ -305,8 +305,8 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Adiciona uma barra vertical opcional ao gráfico.
-     * @param {Object} dados Objeto literal com os parâmetros
+     * Add optional vertical bar to graphic.
+     * @param {Object} dados Literal object with params
      * <ul>
      *  <li>value: float</li>
      *  <li>width: float</li>
@@ -347,14 +347,14 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Adiciona uma barra vertical opcional ao gráfico, referente ao desvio padrão do índice z.
-     * @param {Object} indiceZ Parâmetros do índice z
-     * @param {Number} width Largura da barra
-     * @param {Number} x Posição da barra no eixo x
+     * Adds an optional vertical bar to the graph, referring to the standard deviation of the z-index.
+     * @param {Object} indexZ Index z params
+     * @param {Number} width Bar width
+     * @param {Number} x Bar position x-axis
      * @returns {undefined}
      */
-    this.addBarIndexZ = function(indiceZ, width, x) {
-        this.addVerticalBar($.extend(indiceZ, {
+    this.addBarIndexZ = function(indexZ, width, x) {
+        this.addVerticalBar($.extend(indexZ, {
             width: width,
             x: x,
             classe: 'svg-popover svg-deviation-index-z'
@@ -362,9 +362,9 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Adiciona uma barra vertical opcional ao gráfico, referente ao erro total permitido.
-     * @param {Number} width Largura da barra
-     * @param {Number} x Posição da barra no eixo x
+     * Adds an optional vertical bar to the graph, referring to the total allowed error.
+     * @param {Number} width Bar width
+     * @param {Number} x Bar position x-axis
      * @returns {undefined}
      */
     this.addBarETp = function(width, x) {
@@ -376,14 +376,14 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Adiciona uma barra vertical opcional ao gráfico, referente ao erro sistemático.
-     * @param {Number} width Largura da barra
-     * @param {Number} x Posição da barra no eixo x
-     * @param {Object} erroSistematico Dados do erro sistemático
+     * Adds an optional vertical bar to the graph, referring to the systematic error.
+     * @param {Number} width Bar width
+     * @param {Number} x Bar position x-axis
+     * @param {Object} systematicError Systematic error params
      * @returns {undefined}
      */
-    this.addBarEs = function(width, x, erroSistematico) {
-        this.addVerticalBar($.extend(erroSistematico, {
+    this.addBarEs = function(width, x, systematicError) {
+        this.addVerticalBar($.extend(systematicError, {
             width: width,
             height: 3,
             x: x,
@@ -392,9 +392,10 @@ function DeviationIndex(dados) {
     };
 
     /**
+     * Adds an optional vertical bar to the graph, referring to the systematic allowed error.
      * Adiciona uma barra vertical opcional ao gráfico, referente ao erro sistemático permitido.
-     * @param {Number} width Largura da barra
-     * @param {Number} x Posição da barra no eixo x
+     * @param {Number} width Bar width
+     * @param {Number} x Bar position x-axis
      * @returns {undefined}
      */
     this.addBarESp = function(width, x) {
@@ -406,17 +407,17 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Adiciona um losango, referente ao item / nível ao gráfico.
-     * @param {Number} x Posição no eixo x
-     * @param {Number} y Posição no eixo y
-     * @param {Number} side Largura de cada lado do losango
-     * @param {Number} indice Identificador do item para ser adicionado a classe css
-     * @param {Object} popover Parâmetros da popover
+     * Add a diamond, referring to the item/level to the chart.
+     * @param {Number} x X-axis position
+     * @param {Number} y Y-axis position
+     * @param {Number} side Width of each side of the diamond
+     * @param {Number} index Item identifier to be added to css class
+     * @param {Object} popover Popover params
      * @returns {undefined}
      */
-    this.addLosangoItem = function(x, y, side, indice, popover) {
+    this.addLosangoItem = function(x, y, side, index, popover) {
         var params = {
-            class: ('svg-popover svg-deviation-index-item' + (indice + 1)),
+            class: ('svg-popover svg-deviation-index-item' + (index + 1)),
             width: side,
             height: side,
             x: (x - (side / 2)),
@@ -433,7 +434,7 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Adiciona as labels do eixo x.
+     * Add x-axis labels.
      * @returns {undefined}
      */
     this.addLabelsEixoX = function()
@@ -469,7 +470,7 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Adiciona as labels do eixo y.
+     * Add y-axis labels.
      * @returns {undefined}
      */
     this.addLabelsEixoY = function() {
@@ -496,7 +497,7 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Adiciona as barras do gráfico ao svg.
+     * Add bars to svg.
      * @returns {undefined}
      */
     this.addBars = function()
@@ -525,7 +526,7 @@ function DeviationIndex(dados) {
             };
 
             if (this.withStandardDeviationBars && ((metade === i) || (metade === (i + 1)))) {
-                // barras horizontais do meio do gráfico, com cor diferente
+                // horizontal bars of the middle of the graph, with different color
                 params['class'] = 'svg-deviation-index-bar-desvio-padrao';
                 params['opacity'] = 1;
             }
@@ -535,7 +536,7 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Adiciona os losangos ou triângulos.
+     * Add diamonds or triangles to svg.
      * @returns {undefined}
      */
     this.addLosangosOrTriangles = function()
@@ -584,7 +585,7 @@ function DeviationIndex(dados) {
     };
 
     /**
-     * Retorna um elemento svg, com seus componentes e as informações do histograma.
+     * Returns an svg element, with its components and histogram information.
      * @returns {Svg}
      */
     this.getSvg = function() {

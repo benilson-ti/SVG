@@ -1,109 +1,109 @@
-/* global location, Object, parent, Svg, d3, jsonTeste */
+/* global Svg, $ */
 /* jshint strict: global */
 "use strict";
 
 /**
- * Classe que controla as funcionalidades de geração de histogramas, usando svg.
+ * Class for generate svg histogram using Svg.js.
  * @requires jquery.js
  * @requires Svg.js
  * @requires histogram.css
  * @requires bootstrap.js
  * @requires bootstrap.css
- * @param {Json} dados Json de dados do gráfico
+ * @param {Json} dados Json with params graphic
  * @returns {Histogram}
  */
 function Histogram(dados) {
     /**
-     * Ponteiro.
+     * Pointer.
      * @type Histogram
      */
     var that = this;
 
     /**
-     * Define a largura do svg.
+     * Svg width.
      * @type {Number} valor inteiro
      */
     this.width = 700;
 
     /**
-     * Define a altura do svg.
+     * Svg height.
      * @type {Number} valor inteiro
      */
     this.height = 400;
 
     /**
-     * Define a altura do eixo y.
+     * Height y-axis.
      * @type {Number} valor inteiro
      */
     this.heightY;
 
     /**
-     * Lista de labels do eixo x.
-     * @type {Array} Lista de objetos
+     * Labels list x-axis.
+     * @type {Array} Object list
      */
     this.labelsX;
 
     /**
-     * Lista de labels do eixo Y.
-     * @type {Array} Lista de objetos
+     * Labels list y-axis.
+     * @type {Array} Object list
      */
     this.labelsY;
 
     /**
-     * Título do gráfico.
+     * Graphic title.
      * @type {String}
      */
     this.title;
 
     /**
-     * Título do gráfico no eixo x.
+     * Title x-axis.
      * @type {String}
      */
     this.titleX;
 
     /**
-     * Título do gráfico no eixo y.
+     * Title y-axis.
      * @type {String}
      */
     this.titleY;
 
     /**
-     * Valor da mediana.
+     * Median value.
      * @type {Number}
      */
     this.median;
 
     /**
-     * Valor para adicionar um indicativo de fora da faixa de avaliação, a esquerda.
+     * Optional value, to add an indicator outside the evaluation range, to the left.
      * @type {Number}
      */
     this.outLeft;
 
     /**
-     * Valor para adicionar um indicativo de fora da faixa de avaliação, a direita.
+     * Optional value, to add an indicator outside the evaluation range, to the right.
      * @type {Number}
      */
     this.outRight;
 
     /**
-     * Lista de objetos com a configuração de title e content das tooltips.
+     * List of objects with the title and content configuration of tooltips.
      * @type {Array} Lista de objetos
      */
     this.tooltips;
 
     /**
-     * Define se o SVG é para ser responsivo ou não.
+     * Set responsive atribute.
      * @var Boolean
      */
     this.responsive = false;
 
-    // aplica a configuração informada.
+    // apply the set configuration.
     $.extend(this, dados);
     dados = null;
 
     /**
-     * Método que define o valor do atributo responsive.
-     * @param {Boolean} value Valor do atributo
+     * Set responsive atribute value.
+     * @param {Boolean} value Atribute value
      * @return {Histogram}
      */
     this.setResponsive = function(value) {
@@ -112,48 +112,48 @@ function Histogram(dados) {
     };
 
     /**
-     * Svg gerado. @see Svg.js
+     * Generated svg. @see Svg.js
      * @type {Svg} Objeto Svg
      */
     this.svg;
 
     /**
-     * Grupo de elementos svg do eixo x.
+     * Group of elements svg x-axis.
      * @type {Group}
      */
     this.grupoEixoX;
 
     /**
-     * Grupo de elementos svg do eixo y.
+     * Group of elements svg y-axis.
      * @type {Group}
      */
     this.grupoEixoY;
 
     /**
-     * Line do eixo x.
+     * Line x-axis.
      * @type {Line}
      */
     this.lineX;
 
     /**
-     * Line do eixo y.
+     * Line y-axis.
      * @type {Line}
      */
     this.lineY;
 
     /**
-     * Desenha o gráfico no seletor informado.
-     * @param {String|Object} seletor Seletor jQuery
+     * Draw Graphic on element defined by selector.
+     * @param {String|Object} selector Selector jQuery
      * @returns {Svg}
      */
-    this.draw = function(seletor) {
-        var svg = this.getSvg().setResponsive(this.responsive).draw(seletor);
-        $('.svg-histogram-bar').popover();
+    this.draw = function(selector) {
+        var svg = this.getSvg().setResponsive(this.responsive).draw(selector);
+        $('.svg-histogram-bar').popover(); // bootstrap
         return svg;
     };
 
     /**
-     * Retorna um elemento svg, com seus componentes e as informações do histograma.
+     * Return one svg element with histogram informations.
      * @returns {Svg}
      */
     this.getSvg = function() {
@@ -182,7 +182,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Retorna um quadrado usado na moldura do svg.
+     * Returns a square used in the svg frame.
      * @returns {Rect}
      */
     this.getBoard = function() {
@@ -192,7 +192,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Retorna uma linha, usada para desenhar o eixo x.
+     * Return one line using to draw x-axis.
      * @returns {Line}
      */
     this.getLineX = function() {
@@ -200,9 +200,9 @@ function Histogram(dados) {
             return this.lineX;
         }
 
-        var height = (this.height * 0.70), // posiciona em 70% da altura do svg;
-            x1 = (this.width * 0.08), // 8% do tamanho do svg
-            x2 = (this.width * 0.92), // vai até 92% do tamanho do svg
+        var height = (this.height * 0.70), // postion in 70% svg height;
+            x1 = (this.width * 0.08), // 8% svg height
+            x2 = (this.width * 0.92), // ends 92% svg width
             params = {
                 x1: x1,
                 y1: height,
@@ -216,7 +216,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Retorna uma linha, usada para desenhar o eixo y.
+     * Return one line using to draw y-axis.
      * @returns {Line}
      */
     this.getLineY = function() {
@@ -225,7 +225,7 @@ function Histogram(dados) {
         }
 
         var x = this.getLineX().getParam('x1'),
-            y1 = (this.height * 0.10), // 10% da altura do svg
+            y1 = (this.height * 0.10), // 10% svg height
             y2 = this.getLineX().getParam('y1'),
             params = {x1: x, y1: y1, x2: x, y2: y2, class: 'svg-histogram-line-y'};
 
@@ -234,7 +234,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Retorna um grupo de elementos do eixo x.
+     * Return one group of elements x-axis.
      * @returns {Group}
      */
     this.getGrupoEixoX = function() {
@@ -250,7 +250,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Retorna um grupo de elementos do eixo y.
+     * Return one group of elements y-axis.
      * @returns {Group}
      */
     this.getGrupoEixoY = function() {
@@ -266,7 +266,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Retorna o título do svg.
+     * Return svg title.
      * @returns {Text}
      */
     this.getTitle = function() {
@@ -277,7 +277,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Retorna o título do eixo x.
+     * Return text title x-axis.
      * @returns {Text}
      */
     this.getTitleX = function() {
@@ -288,7 +288,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Retorna o título do eixo y.
+     * Return text title y-axis.
      * @returns {Text}
      */
     this.getTitleY = function() {
@@ -306,7 +306,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Adiciona as labels do eixo x.
+     * Add labels on x-axis.
      * @returns {undefined}
      */
     this.addLabelsEixoX = function()
@@ -345,7 +345,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Adiciona as labels do eixo y.
+     * Add labels on y-axis.
      * @returns {undefined}
      */
     this.addLabelsEixoY = function() {
@@ -383,7 +383,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Adiciona as linhas verticais de cada label no eixo x.
+     * Adds the vertical lines of each label on the x-axis.
      * @returns {undefined}
      */
     this.addLinesEixoX = function() {
@@ -408,7 +408,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Adiciona as linhas horizontais de cada label no eixo y.
+     * Adds the vertical lines of each label on the y-axis.
      * @returns {undefined}
      */
     this.addLinesEixoY = function()
@@ -434,7 +434,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Adiciona as barras do gráfico ao svg.
+     * Add bars to svg.
      * @returns {undefined}
      */
     this.addBars = function()
@@ -442,7 +442,7 @@ function Histogram(dados) {
         var alturaInicialEixoY = this.getLineY().getParam('y1'),
             larguraX = (this.getLineX().getParam('x2') - this.getLineX().getParam('x1')),
             segmentosX = (larguraX / this.labelsX.length),
-            espacamento = (segmentosX * 0.10), // 10% do tamanho da barra
+            espacamento = (segmentosX * 0.10), // 10% bar width
             larguraCadaGrupo = (segmentosX - espacamento),
             x,
             x1 = (this.getLineX().getParam('x1')),
@@ -451,7 +451,7 @@ function Histogram(dados) {
             mediaAlturaCadaGrupo = (alturaLinhaY / maiorGrupo),
             alturaMaximaGrupo = (maiorGrupo * mediaAlturaCadaGrupo),
             height,
-            params = { // valores fixo
+            params = { // fixed values
                 class: 'svg-histogram-bar',
                 'data-toggle': 'popover',
                 'data-trigger': 'hover',
@@ -464,7 +464,6 @@ function Histogram(dados) {
             x = (x1 + (espacamento / 2) + ((larguraCadaGrupo + espacamento) * i));
             height = (mediaAlturaCadaGrupo * valor.y);
 
-            // valores variáveis
             params['width'] = larguraCadaGrupo;
             params['height'] = (mediaAlturaCadaGrupo * valor.y);
             params['x'] = x;
@@ -473,7 +472,7 @@ function Histogram(dados) {
                 params['title'] = that.tooltips[i].title;
                 params['data-content'] = that.tooltips[i].content;
             } catch (ex) {
-                // nada
+                // nothing
             }
 
             that.svg.add(new Rect(params));
@@ -481,7 +480,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Adiciona uma mediana ao gráfico.
+     * Add one median to graphic.
      * @returns {undefined}
      */
     this.addMedian = function() {
@@ -526,7 +525,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Adiciona um retângulo demonstrativo das barras fora da avaliação, a esquerda.
+     * Adds a rectangle showing the bars outside the evaluation, left.
      * @returns {undefined}
      */
     this.addOutLeft = function() {
@@ -567,7 +566,7 @@ function Histogram(dados) {
     };
 
     /**
-     * Adiciona um retângulo demonstrativo das barras fora da avaliação, a direita.
+     * Adds a rectangle showing the bars outside the evaluation, right.
      * @returns {undefined}
      */
     this.addOutRight = function() {
