@@ -3,7 +3,7 @@
 'use strict';
 
 /**
- * Classe para as funcionalidades com os componentes SVG.
+ * Class for features with SVG components.
  * @see https://www.w3schools.com/graphics/svg_reference.asp
  * @param {Object} params {width: integer N, height: integer N}
  * @param {Object} style {}
@@ -37,33 +37,33 @@
 function Svg(params, style)
 {
     /**
-     * Ponteiro para o próprio objeto.
+     * Pointer to the object itself.
      * @private
      * @type Svg
      */
     var that = this,
 
     /**
-     * Objeto svg html gerado.
+     * Object html svg generated.
      * @private
      * @type Object
      */
     svg;
 
     /**
-     * Largura do svg.
+     * Svg width.
      * @var Number
      */
     this.width = params.width;
 
     /**
-     * Algura do svg.
+     * Svg height.
      * @var Number
      */
     this.height = params.height;
 
     /**
-     * Define se o SVG é para ser responsivo ou não.
+     * Sets whether SVG is to be responsive or not.
      * @var Boolean
      */
     this.responsive = false;
@@ -71,8 +71,8 @@ function Svg(params, style)
     XmlSvg.call(this, 'svg', params, style); // extend XmlSvg
 
     /**
-     * Método que define o valor do atributo responsive.
-     * @param {Boolean} value Valor do atributo
+     * Method that defines the value of the responsive attribute.
+     * @param {Boolean} value Attribute Value
      * @return Svg
      */
     this.setResponsive = function(value) {
@@ -81,9 +81,9 @@ function Svg(params, style)
     };
 
     /**
-     * Gera o svg e adiciona ao elemento do seletor informado.
-     * @param {String} seletor Seletor jQuery
-     * @returns {jQuery} Svg gerado
+     * Generates svg and adds to the selector element.
+     * @param {String} seletor Selector jQuery
+     * @returns {jQuery} Svg generated
      */
     this.draw = function(seletor) {
         svg = this.generate();
@@ -102,11 +102,11 @@ function Svg(params, style)
 }
 
 /**
- * Classe que serve para representar qualquer elemento xml gerado por svg.
+ * Class that serves to represent any xml element generated for svg.
  * @constructor
- * @param {String} tag Tag do elemento xml
- * @param {Object} attrs Objeto literal de atributos
- * @param {Object} style Objeto literal de atributos css
+ * @param {String} tag Tag of element xml
+ * @param {Object} attrs Literal Object width attributes
+ * @param {Object} style Literal Object width css attributes
  * @returns {XmlSvg}
  */
 function XmlSvg(tag, attrs, style)
@@ -117,7 +117,7 @@ function XmlSvg(tag, attrs, style)
         css = $.extend({}, style);
 
     /**
-     * Adiciona um objeto XmlSvg como filho.
+     * Add an XmlSvg object as child.
      * @param {XmlSvg} xml Classe filha de XmlSvg
      * @returns {XmlSvg}
      */
@@ -127,9 +127,9 @@ function XmlSvg(tag, attrs, style)
     };
 
     /**
-     * Adiciona um atributo.
-     * @param {String} attr Nome do atributo
-     * @param {String} value Valor do atributo
+     * Add one atribute.
+     * @param {String} attr Atribute name
+     * @param {String} value Atribute value
      * @returns {XmlSvg}
      */
     this.addAttr = function(attr, value) {
@@ -138,8 +138,8 @@ function XmlSvg(tag, attrs, style)
     };
 
     /**
-     * Adiciona uma lista de atributos.
-     * @param {Object} attrs Objeto literal com os atributos
+     * Add one list of atributes.
+     * @param {Object} attrs Literal object with atributes
      * @returns {XmlSvg}
      */
     this.setAttrs = function(attrs) {
@@ -148,9 +148,9 @@ function XmlSvg(tag, attrs, style)
     };
 
     /**
-     * Adiciona um atributo CSS.
-     * @param {String} attr Nome do atributo CSS
-     * @param {String} value Valor do atributo
+     * Add one CSS atribute.
+     * @param {String} attr Name CSS atribute
+     * @param {String} value Atribute value
      * @returns {XmlSvg}
      */
     this.addCss = function(attr, value) {
@@ -159,8 +159,8 @@ function XmlSvg(tag, attrs, style)
     };
 
     /**
-     * Adiciona uma lista de atributos CSS.
-     * @param {Object} style Objeto literal com os atributos CSS
+     * Add one list of CSS atributes.
+     * @param {Object} style Literal object with CSS atributes
      * @returns {XmlSvg}
      */
     this.setCss = function(style) {
@@ -169,8 +169,8 @@ function XmlSvg(tag, attrs, style)
     };
 
     /**
-     * Retorna o valor de um atributo.
-     * @param {string} param Nome do atributo
+     * Returns the value of an attribute.
+     * @param {string} param Atribute name
      * @returns {String}
      */
     this.getParam = function(param) {
@@ -178,7 +178,7 @@ function XmlSvg(tag, attrs, style)
     };
 
     /**
-     * Gera o elemento html e retorna, encapsulado como elemento jQuery.
+     * Generates html element and returns, encapsulated as jQuery element.
      * @returns {jQuery}
      */
     this.generate = function() {
@@ -187,14 +187,13 @@ function XmlSvg(tag, attrs, style)
 
         for (prop in params) {
             $tag.get(0).setAttribute(prop, params[prop]);
-            //$tag.attr(prop, params[prop]); // não serve, aplica lowercase
         }
 
         $tag.css(css);
 
         $(tags).each(function() {
             $tag.append(
-                this.generate() // recursivo
+                this.generate() // recursive
             );
         });
 
@@ -208,7 +207,7 @@ function XmlSvg(tag, attrs, style)
 }
 
 /**
- * Adiciona e retorna uma linha ao svg.
+ * Create svg line.
  * @constructor
  * @extends XmlSvg
  * @example
@@ -232,8 +231,8 @@ function Line (params, style) {
     XmlSvg.call(this, 'line', params, style); // extend XmlSvg
 
     /**
-     * Preenche o valor do atributo x1 (posição inicial no eixo x).
-     * @param {Number} value Valor inteiro
+     * Fills the attribute value x1 (initial position on the x-axis).
+     * @param {Number} value Integer value
      * @returns {Line}
      */
     this.setX1 = function(value) {
@@ -242,8 +241,8 @@ function Line (params, style) {
     };
 
     /**
-     * Preenche o valor do atributo y1 (posição inicial no eixo y).
-     * @param {Number} value Valor inteiro
+     * Fills the attribute value y1 (initial position on the y-axis).
+     * @param {Number} value Integer value
      * @returns {Line}
      */
     this.setY1 = function(value) {
@@ -252,8 +251,8 @@ function Line (params, style) {
     };
 
     /**
-     * Preenche o valor do atributo x2 (posição final no eixo x).
-     * @param {Number} value Valor inteiro
+     * Fills the attribute value x2 (final position on the x-axis).
+     * @param {Number} value Integer value
      * @returns {Line}
      */
     this.setX2 = function(value) {
@@ -262,8 +261,8 @@ function Line (params, style) {
     };
 
     /**
-     * Preenche o valor do atributo y2 (posição final no eixo y).
-     * @param {Number} value Valor inteiro
+     * Fills the attribute value y2 (final position on the y-axis).
+     * @param {Number} value Integer value
      * @returns {Line}
      */
     this.setY2 = function(value) {
@@ -273,7 +272,7 @@ function Line (params, style) {
 };
 
 /**
- * Adiciona e retorna um quadrilátero ao svg.
+ * Create svg rect.
  * @constructor
  * @extends XmlSvg
  * @param {Object} params {width: 150, height: 150}
@@ -292,8 +291,8 @@ function Rect(params, style) {
     XmlSvg.call(this, 'rect', params, style); // extend XmlSvg
 
     /**
-     * Preenche o valor do atributo width (largura do quadrilátero).
-     * @param {Number} value Valor inteiro
+     * Set the value of the width attribute.
+     * @param {Number} value Integer value
      * @returns {Rect}
      */
     this.setWidth = function(value) {
@@ -302,8 +301,8 @@ function Rect(params, style) {
     };
 
     /**
-     * Preenche o valor do atributo height (altura do quadrilátero).
-     * @param {Number} value Valor inteiro
+     * Set the value of the height attribute.
+     * @param {Number} value Integer value
      * @returns {Rect}
      */
     this.setHeight = function(value) {
@@ -312,8 +311,8 @@ function Rect(params, style) {
     };
 
     /**
-     * Preenche o valor do atributo x (posição no eixo x).
-     * @param {Number} value Valor inteiro
+     * Set the value of position in the x-axis.
+     * @param {Number} value Integer value
      * @returns {Rect}
      */
     this.setX = function(value) {
@@ -322,8 +321,8 @@ function Rect(params, style) {
     };
 
     /**
-     * Preenche o valor do atributo y (posição no eixo y).
-     * @param {Number} value Valor inteiro
+     * Set the value of position in the y-axis.
+     * @param {Number} value Integer value
      * @returns {Rect}
      */
     this.setY = function(value) {
@@ -332,8 +331,8 @@ function Rect(params, style) {
     };
 
     /**
-     * Preenche o valor do atributo rx (arredondamento no eixo x).
-     * @param {Number} value Valor inteiro
+     * Set atribute rx value (round x-axis).
+     * @param {Number} value Integer value
      * @returns {Rect}
      */
     this.setRx = function(value) {
@@ -342,8 +341,8 @@ function Rect(params, style) {
     };
 
     /**
-     * Preenche o valor do atributo ry (arredondamento no eixo y).
-     * @param {Number} value Valor inteiro
+     * Set atribute ry value (round y-axis).
+     * @param {Number} value Integer value
      * @returns {Rect}
      */
     this.setRy = function(value) {
@@ -353,7 +352,7 @@ function Rect(params, style) {
 };
 
 /**
- * Adiciona e retorna uma elipse ao svg.
+ * Create svg Ellipse.
  * @constructor
  * @extends XmlSvg
  * @param {Object} params {cx: 200, cy: 80, rx: 60, ry: 30}
@@ -371,8 +370,8 @@ function Ellipse(params, style) {
     XmlSvg.call(this, 'ellipse', params, style); // extend XmlSvg
 
     /**
-     * Preenche o valor do atributo cx (posição central no eixo x).
-     * @param {Number} value Valor inteiro
+     * Set cx atribute (central position x-axis).
+     * @param {Number} value Integer value
      * @returns {Ellipse}
      */
     this.setX = function(value) {
@@ -381,8 +380,8 @@ function Ellipse(params, style) {
     };
 
     /**
-     * Preenche o valor do atributo cy (posição central no eixo y).
-     * @param {Number} value Valor inteiro
+     * Set cy atribute (central position y-axis).
+     * @param {Number} value Integer value
      * @returns {Ellipse}
      */
     this.setY = function(value) {
@@ -391,8 +390,8 @@ function Ellipse(params, style) {
     };
 
     /**
-     * Preenche o valor do atributo rx (raio no eixo x).
-     * @param {Number} value Valor inteiro
+     * Set rx atribute (radius x-axis).
+     * @param {Number} value Integer value
      * @returns {Ellipse}
      */
     this.setRaioX = function(value) {
@@ -401,8 +400,8 @@ function Ellipse(params, style) {
     };
 
     /**
-     * Preenche o valor do atributo ry (raio no eixo y).
-     * @param {Number} value Valor inteiro
+     * Set ry atribute (radius y-axis).
+     * @param {Number} value Integer value
      * @returns {Ellipse}
      */
     this.setRaioY = function(value) {
@@ -413,7 +412,7 @@ function Ellipse(params, style) {
 
 
 /**
- * Adiciona e retorna um círculo ao svg.
+ * Create svg circle.
  * @constructor
  * @extends XmlSvg
  * @param {Object} params {cx: 100, cy: 100, r: 20}
@@ -429,8 +428,8 @@ function Circle(params, style) {
     XmlSvg.call(this, 'circle', params, style); // extend XmlSvg
 
     /**
-     * Preenche o valor do atributo cx (posição central no eixo x).
-     * @param {Number} value Valor inteiro
+     * Set cx atribute (central position x-axis).
+     * @param {Number} value Integer value
      * @returns {Circle}
      */
     this.setX = function(value) {
@@ -439,8 +438,8 @@ function Circle(params, style) {
     };
 
     /**
-     * Preenche o valor do atributo cy (posição central no eixo y).
-     * @param {Number} value Valor inteiro
+     * Set cy atribute (central position y-axis).
+     * @param {Number} value Integer value
      * @returns {Circle}
      */
     this.setY = function(value) {
@@ -449,18 +448,18 @@ function Circle(params, style) {
     };
 
     /**
-     * Preenche o valor do atributo r (raio).
-     * @param {Number} value Valor inteiro
+     * Set r atribute (radius).
+     * @param {Number} value Integer value
      * @returns {Circle}
      */
-    this.setRaio = function(value) {
+    this.setR = function(value) {
         this.addAttr('r', value);
         return this;
     };
 };
 
 /**
- * Adiciona e retorna um polígono ao svg.
+ * Create svg polygon.
  * @constructor
  * @extends XmlSvg
  * @param {Object} params {points: "200,10 250,190 160,210"}
@@ -471,8 +470,8 @@ function Polygon(params, style) {
     XmlSvg.call(this, 'polygon', params, style); // extend XmlSvg
 
     /**
-     * Preenche o valor do atributo points (pontos x1,y1, x2,y2, ..., xN,yN do polígono).
-     * @param {Number} value Valor inteiro
+     * Set points atribute (points x1,y1, x2,y2, ..., xN,yN).
+     * @param {Number} value String value
      * @returns {Polygon}
      */
     this.setPoints = function(value) {
@@ -482,7 +481,7 @@ function Polygon(params, style) {
 };
 
 /**
- * Adiciona e retorna uma linha não reta ao svg.
+ * Create svg polyline.
  * @constructor
  * @extends Polygon
  * @param {Object} params {points: "20,20 40,25 60,40 80,120 120,140 200,180"}
@@ -494,7 +493,7 @@ function Polyline(params, style) {
 };
 
 /**
- * Adiciona e retorna um desenho "feito à mão livre" ao svg.
+ * Create svg "drawing freehand".
  * @constructor
  * @extends XmlSvg
  * <ul>
@@ -509,7 +508,7 @@ function Polyline(params, style) {
  *  <li>A = elliptical Arc</li>
  *  <li>Z = closepath</li>
  * </ul>
- * @param {Object} params {d: "M40,20  A30,30 0 1,1 70,70"}
+ * @param {Object} params {d: "M40,20 A30,30 0 1,1 70,70"}
  * @param {Object} style {stroke: '#000', 'stroke-width': 1, fill: 'none'}
  * @returns {Path}
  */
@@ -517,8 +516,8 @@ function Path(params, style) {
     XmlSvg.call(this, 'path', params, style); // extend XmlSvg
 
     /**
-     * Preenche o valor do atributo d (definições da figura).
-     * @param {Number} value Valor inteiro
+     * Set d atribute (figure settings).
+     * @param {String} value Text value
      * @returns {Path}
      */
     this.setD = function(value) {
@@ -528,7 +527,7 @@ function Path(params, style) {
 };
 
 /**
- * Adiciona e retorna um seção de definições ao svg.
+ * Create svg defs.
  * @constructor
  * @extends XmlSvg
  * @param {Object} params {}
@@ -540,7 +539,7 @@ function Defs(params, style) {
 };
 
 /**
- * Adiciona e retorna um grupo de elementos ao svg.
+ * Create svg group.
  * @constructor
  * @extends XmlSvg
  * @param {Object} params {}
@@ -557,10 +556,10 @@ function Group(params, style) {
 };
 
 /**
- * Adiciona e retorna um texto ao svg.
+ * Create svg text.
  * @constructor
  * @extends XmlSvg
- * @param {String} text Texto para ser desenhado
+ * @param {String} text Text to be drawn
  * @param {Object} params {x: 10, y: 15, transform: "rotate(30 20,40)"}
  * <ul>
  *  <li>
@@ -600,7 +599,7 @@ function Text(text, params, style) {
     XmlSvg.call(this, 'text', params, style); // extend XmlSvg
 
     /**
-     * Texto que será gerado no svg.
+     * Text to be drawn.
      * @var {String}
      */
     this.text = text;
@@ -608,8 +607,8 @@ function Text(text, params, style) {
     // @todo: sets...
 
     /**
-     * Preenche o valor do atributo text.
-     * @param {String} value Valor do atributo
+     * Set text atribute.
+     * @param {String} value Atribute vaue
      * @returns {Text}
      */
     this.setText = function(value) {
@@ -619,28 +618,28 @@ function Text(text, params, style) {
 };
 
 /**
- * Adiciona uma tag title, função semelhante ao atributo title do html, em algum elemento svg.
+ * Creates a title tag, similar to the title attribute of the html, in some svg element.
  * @constructor
  * @extends XmlSvg
- * @param {String} text Texto para ser renderizado de forma semelhante ao title do html
- * @param {Object} params {class: 'nome-classe', id: 'id'"}
+ * @param {String} text Text for title
+ * @param {Object} params {class: 'name-classe', id: 'id'"}
  * @param {Object} style {fill="#ff0000"}
  * @returns {Text}
  */
 function Title(text, params, style) {
-    // params e style são adicionados ao elemento, mas em 25/10/2018 ainda não modifica
-    // a aparência renderizada, talvez no futuro.
+    // params and style are added to the element, but in the year 2018, it still
+    // does not modify the rendered appearance, maybe in the future.
     XmlSvg.call(this, 'title', params, style); // extend XmlSvg
 
     /**
-     * Texto que será gerado no svg.
+     * Text for using in title.
      * @var {String}
      */
     this.text = text;
 
     /**
-     * Preenche o valor do atributo text.
-     * @param {String} value Valor do atributo
+     * Set text atribute.
+     * @param {String} value Atribute value
      * @returns {Text}
      */
     this.setText = function(value) {
@@ -650,7 +649,7 @@ function Title(text, params, style) {
 };
 
 /**
- * Adiciona e retorna um efeito de gradiente de cor radial em uma tag defs.
+ * Creates a radial color gradient effect on a defs tag.
  * @constructor
  * @extends XmlSvg
  * @param {Object} params {id: "grad1", cx: "50%", cy: "50%", r: "50%", fx: "50%", fy: "50%"}
@@ -692,7 +691,7 @@ this.RadialGradient = function(params, style) {
 };
 
 /**
- * Adiciona e retorna um efeito de gradiente de cor linear em uma tag defs.
+ * Creates a linear color gradient effect on a defs tag
  * @constructor
  * @extends XmlSvg
  * @param {Object} params {id: "grad1", x1: "0%", y1: "0%", x2: "100%", y2: "0%"}
@@ -728,7 +727,7 @@ function LinearGradient(params, style) {
 };
 
 /**
- * Adiciona e retorna um efeito de gradiente de cor linear/radial em uma tag defs.
+ * Creates a linear/radial color gradient effect on a defs tag.
  * @constructor
  * @extends XmlSvg
  * @param {Object} params {offset: "0%"}
@@ -752,7 +751,7 @@ function Stop(params, style) {
 };
 
 /**
- * Adiciona e retorna os filtros nas definições de um svg.
+ * Create svg filter.
  * @constructor
  * @extends XmlSvg
  * @param {Object} params {id: "f1", x:0, y:0}
@@ -764,8 +763,7 @@ this.filter = function(params, style) {
 };
 
 /**
- * Adiciona e retorna o efeito gaussiano para ser aplicado usando filter,
- * nas definições de um svg.
+ * Creates a gaussian effect for using on filter element.
  * @constructor
  * @extends XmlSvg
  * @param {Object} params {in: "SourceGraphic", stdDeviation: 15}
@@ -777,8 +775,7 @@ function FeGaussianBlur(params, style) {
 };
 
 /**
- * Adiciona e retorna o efeito de criar um elemento sombra, usando filter,
- * nas definições de um svg.
+ * Creates a shadow effect for using on filter element.
  * @constructor
  * @extends XmlSvg
  * @param {Object} params {result: "offOut", in: "SourceGraphic", dx: 20, dy: 20}
@@ -790,8 +787,7 @@ function FeOffset(params, style) {
 };
 
 /**
- * Adiciona e retorna o efeito de criar um elemento sombra, usando filter,
- * nas definições de um svg. Usar em conjunto com feOffset.
+ * Creates a shadow effect for using on filter element. Using with feOffset.
  * @constructor
  * @extends XmlSvg
  * @param {Object} params {in: "SourceGraphic", in2: "offOut", mode: "normal"}
@@ -803,7 +799,7 @@ function FeBlend(params, style) {
 };
 
 /**
- * Adiciona e retorna um elemento svg que permite adicionar html no SVG.
+ * Create svg ForeignObject for using external html inside svg.
  * @constructor
  * @extends XmlSvg
  * @param {Object} params {x:"20", y:"20", width:"160", height:"160"}
@@ -815,7 +811,7 @@ function ForeignObject(params, style) {
     var $tag = this.generate();
 
     /**
-     * Gera o elemento e retorna, encapsulado como elemento jQuery.
+     * Return generated ForeignObject. Encapsulated as jQuery element.
      * @returns {jQuery}
      */
     this.generate = function() {
