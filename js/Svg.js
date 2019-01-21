@@ -81,6 +81,46 @@ function Svg(params, style)
     };
 
     /**
+     * Makes svg responsive.
+     * @returns Svg
+     */
+    this.responsiveOn = function() {
+        try {
+            svg.get(0).setAttribute('viewBox', ('0 0 ' + that.width + ' ' + that.height));
+            $(svg).removeProp('width');
+            $(svg).removeProp('height');
+            $(svg).css({
+                width: '100%',
+                height: 'auto'
+            });
+        } catch (ex) {
+            // nada
+        }
+
+        return this;
+    };
+
+    /**
+     * Makes svg not responsive.
+     * @returns Svg
+     */
+    this.responsiveOff = function() {
+        try {
+            svg.get(0).removeAttribute('viewBox');
+            $(svg).prop('width', this.width);
+            $(svg).prop('height', this.height);
+            $(svg).css({
+                width: '',
+                height: ''
+            });
+        } catch (ex) {
+            // nada
+        }
+
+        return this;
+    };
+
+    /**
      * Generates svg and adds to the selector element.
      * @param {String} seletor Selector jQuery
      * @returns {jQuery} Svg generated
@@ -90,11 +130,7 @@ function Svg(params, style)
         $(seletor).append(svg);
 
         if (this.responsive) {
-            svg.get(0).setAttribute('viewBox', ('0 0 ' + that.width + ' ' + that.height));
-            $(svg).removeProp('width');
-            $(svg).removeProp('height');
-            $(svg).css('width', '100%');
-            $(svg).css('height', 'auto');
+            this.responsiveOn();
         }
 
         return svg;
