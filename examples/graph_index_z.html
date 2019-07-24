@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Deviation Index</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/graph_index_z.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../js/Svg.js"></script>
+        <script type="text/javascript" src="../js/GraphIndexZ.js"></script>
+    </head>
+    <body>
+        <h1>Graph Index Z </h1>
+        <h2>GraphIndexZ.js + graph_index_z.css</h2>
+        <br>
+        <div id="example1" style="max-width: 25%; float: left; text-align: center;"></div>
+        <div id="example2" style="max-width: 25%; float: left; text-align: center;"></div>
+        <div id="example3" style="max-width: 25%; float: left; text-align: center;"></div>
+        <div id="example4" style="max-width: 25%; float: left; text-align: center;"></div>
+        <script type="text/javascript">
+            new GraphIndexZ({dp: {value: '1.5', text: '1,65 (1,5 DP) 90%'}}).draw('#example1');
+            new GraphIndexZ({dp: {value: '2', text: '1,96 (2 DP) 95%'}}).draw('#example2');
+            new GraphIndexZ({dp: {value: '3', text: '2,58 (3 DP) 99%'}}).draw('#example3');
+            new GraphIndexZ({dp: {value: '4', text: '3,83 (4 DP) 100'}}).draw('#example4');
+        </script>
+    </body>
+</html>
