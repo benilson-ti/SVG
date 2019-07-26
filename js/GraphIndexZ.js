@@ -8,6 +8,7 @@
  * @requires Svg.js
  * @requires graph_index_z.css
  * @param {Json} dados Json de dados do gráfico
+ * @example new GraphIndexZ({dp: {value: '3', text: '2,58 (3 DP) 99%'}}).draw('#graphIndiceZ');
  * @returns {GraphIndexZ}
  */
 function GraphIndexZ(dados) {
@@ -276,6 +277,12 @@ function GraphIndexZ(dados) {
         });
     };
 
+    /**
+     * Retorna o desenho do gráfico.
+     * @param {Boolean} closeImage True fecha a figura e usa como background,
+     *                             False deixa somente a linha superior verde desenhada
+     * @returns {Path}
+     */
     this.getPath = function(closeImage) {
         var classe = 'svg-graph-index-z-path-without-z',
             params = {class: classe},
@@ -292,44 +299,37 @@ function GraphIndexZ(dados) {
         return new Path(params);
     };
 
+    /**
+     * Retorna a figura desenhada como background (cinza escuro), dentro do gráfico.
+     * @returns {Path}
+     */
     this.getBgInside = function() {
-        var d = this.d.slice();
+        var d;
 
         switch (this.dp.value) {
             case '1.5':
-                d.shift();
-                d.shift();
-                d.shift();
-                d.shift();
-                d.unshift('C 80 89, 80 55, 80 55');
+                d = this.d.slice(4, 7);
+                d.unshift('L 80 55');
                 d.unshift('M80 89');
-                d.pop();
-                d.pop();
-                d.pop();
-                d.push('C 140 55 140 89 140 89');
+                d.push('L 140 89');
                 break;
 
             case '2':
-                d.shift();
-                d.shift();
-                d.shift();
-                d.unshift('C 70 89, 70 70, 70 70');
+                d = this.d.slice(3, 8);
+                d.unshift('L 70 70');
                 d.unshift('M70 89');
-                d.pop();
-                d.pop();
-                d.push('C 150 89 150 89 150 89');
+                d.push('L 150 89');
                 break;
 
             case '3':
-                d.shift();
-                d.shift();
-                d.unshift('C 50 89, 50 85, 50 85');
+                d = this.d.slice(2, 9);
+                d.unshift('L 50 85');
                 d.unshift('M50 89');
-                d.pop();
-                d.push('C 170 85, 170 89, 170 89');
+                d.push('L 170 89');
                 break;
-            default:
-                // nada
+
+            default: // '4'
+                d = this.d.slice();
         }
 
         d.push('Z'); // traça uma linha reta até a posição inicial, fechando a figura
@@ -338,7 +338,7 @@ function GraphIndexZ(dados) {
     };
 
     /**
-     * Retorna um quadrado usado na moldura do svg.
+     * Retorna um quadrado cinza claro, usado como background externo do dp selecionado.
      * @returns {Rect}
      */
     this.getRectBackGround = function() {
@@ -387,7 +387,7 @@ function GraphIndexZ(dados) {
     };
 
     /**
-     * Retorna um elemento svg, com seus componentes e as informações do histograma.
+     * Retorna um elemento svg, com seus componentes e as informações do gráfico de índice Z.
      * @returns {Svg}
      */
     this.getSvg = function() {
