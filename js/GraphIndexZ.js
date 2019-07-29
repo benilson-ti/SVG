@@ -309,23 +309,20 @@ function GraphIndexZ(dados) {
         switch (this.dp.value) {
             case '1.5':
                 d = this.d.slice(4, 7);
-                d.unshift('L 80 55');
-                d.unshift('M80 89');
-                d.push('L 140 89');
+                d.unshift('M80 89 V 55');
+                d.push('V 89');
                 break;
 
             case '2':
                 d = this.d.slice(3, 8);
-                d.unshift('L 70 70');
-                d.unshift('M70 89');
-                d.push('L 150 89');
+                d.unshift('M70 89 V 70');
+                d.push('V 89');
                 break;
 
             case '3':
                 d = this.d.slice(2, 9);
-                d.unshift('L 50 85');
-                d.unshift('M50 89');
-                d.push('L 170 89');
+                d.unshift('M50 89 V 85');
+                d.push('V 89');
                 break;
 
             default: // '4'
